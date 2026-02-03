@@ -1,5 +1,3 @@
-## II. CHI TIẾT ĐỀ TÀI VÀ GỢI Ý TRIỂN KHAI (BPMN + RPA + CAMUNDA
-
 
 
 | DANH SÁCH ĐỀ TÀI VÀ GỢI Ý TRIỂN KHAI (BPMN \+ RPA \+ CAMUNDA) |
