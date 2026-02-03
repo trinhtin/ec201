@@ -1,4 +1,7 @@
-
+# I. THÔNG TIN CƠ BẢN
+- Nhóm sinh viên: tối đa 6 bạn
+- Chọn đồ án theo gợi ý bên dưới, các em có thể chọn đề tài khác theo ý định
+- Các đồ án nên xuyên suốt qua nhiều môn học để làm tăng chất lượng đề tài
 
 ## II. DANH SÁCH ĐỀ TÀI VÀ GỢI Ý TRIỂN KHAI (BPMN \+ RPA \+ CAMUNDA)
 
