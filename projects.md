@@ -1,5 +1,7 @@
 
 
+## II. DANH SÁCH ĐỀ TÀI VÀ GỢI Ý TRIỂN KHAI (BPMN \+ RPA \+ CAMUNDA)
+
 | DANH SÁCH ĐỀ TÀI VÀ GỢI Ý TRIỂN KHAI (BPMN \+ RPA \+ CAMUNDA) |
 | :---- |
 | **1\. Mô hình Dropshipping (Hàng từ AliExpress/1688 bán sang Mỹ) Bối cảnh:** Kinh doanh bán lẻ xuyên biên giới, người bán không giữ hàng mà chuyển đơn cho nhà cung cấp. **Quy trình nghiệp vụ:** Nhận đơn hàng từ web bán lẻ (Shopify/WooCommerce) → Hệ thống/Tool xử lý đơn hàng → Tự động đặt hàng (Place Order) bên nhà cung cấp Trung Quốc (AliExpress) → Nhà cung cấp đóng gói và ship thẳng cho khách hàng cuối → Cập nhật mã vận đơn (Tracking Number) ngược lại cho khách để theo dõi. **Ứng dụng RPA:** Đây là đất diễn chính cho RPA. Viết Bot tự động truy cập trang AliExpress, đăng nhập, điền form đặt hàng (tên, địa chỉ khách từ đơn Shopify), chọn đúng thuộc tính sản phẩm và bấm thanh toán. Bot giúp tránh sai sót nhập liệu tay hàng nghìn đơn. **Phù hợp:** Nhóm mạnh về Code/Kỹ thuật. |
@@ -43,4 +45,266 @@
 | **39\. Quản lý Sự kiện ảo/Hội thảo Webinar (Virtual Event Platform) Bối cảnh:** Tổ chức hội thảo trực tuyến chuyên nghiệp. **Quy trình nghiệp vụ:** Tạo Landing page sự kiện → Bán vé/Đăng ký → Gửi email chứa link tham dự (Zoom/Meet) → Check-in người tham dự (bằng cách click link) → Trong sự kiện: Ghi nhận tương tác (Poll/Q\&A) → Kết thúc: Gửi tài liệu và cấp chứng nhận (Certificate) tham gia. **Ứng dụng RPA:** Tự động xuất danh sách người tham dự (kèm câu hỏi họ đã đặt) ra file Excel, phân loại "Khách hàng tiềm năng" (Warm Leads) để chuyển cho bộ phận Sales gọi điện chăm sóc. **Phù hợp:** Nhóm Sáng tạo. |
 | **40\. Dịch vụ "Mystery Box" NFT (Kinh doanh vật phẩm số) Bối cảnh:** Game Fi hoặc Sưu tầm số. **Quy trình nghiệp vụ:** Mở bán đợt Hộp mù (Blind Box) → Người dùng nạp tiền (Crypto/Fiat) mua hộp → Hệ thống chạy thuật toán ngẫu nhiên (Random) để mở ra vật phẩm (Thẻ thường/Thẻ hiếm) → Vật phẩm được lưu vào Ví người dùng → Người dùng đăng bán trên Chợ (Marketplace) → Khớp lệnh mua bán → Trừ phí sàn. **Lưu ý:** Tập trung mô tả quy trình giao dịch và xử lý ví tiền (Wallet), không cần đi sâu vào code Blockchain phức tạp. **Phù hợp:** Nhóm Sáng tạo. |
 | **41\. Hệ thống So sánh giá & Theo dõi giá TMĐT (Price Intelligence Platform) Bối cảnh:** Trang web giúp người mua tìm giá rẻ nhất giữa Shopee, Tiki, Lazada và kiếm tiền từ Affiliate. **Quy trình nghiệp vụ:** (1) Thu thập: Hệ thống định kỳ truy cập các sàn TMĐT lấy giá sản phẩm. (2) So khớp: Ghép nối sản phẩm giống nhau giữa các sàn. (3) Cảnh báo: Nếu giá giảm xuống mức khách mong muốn → Gửi Email/Noti. (4) Affiliate: Điều hướng khách mua qua link tiếp thị → Đối soát doanh thu hoa hồng. **Ứng dụng RPA & Camunda:** Đề tài **"Best Choice"** cho việc kết hợp. **RPA** dùng để cào dữ liệu (Crawl Data) từ các web bán hàng. **Camunda** đóng vai trò "Nhạc trưởng" điều phối: Lập lịch cho Bot chạy (ví dụ 12h đêm), xử lý lỗi khi Bot bị chặn IP, kích hoạt luồng gửi Email hàng loạt. **Phù hợp:** Mọi nhóm (Đặc biệt khuyến khích vì tính thực tế và hiện đại). |
+
+---
+
+## III. DÀN Ý CHI TIẾT CHO ĐỒ ÁN
+
+### Tên Đề Tài (Ví dụ):
+
+**PHÂN TÍCH VÀ THIẾT KẾ LẠI QUY TRÌNH [TÊN QUY TRÌNH] TẠI CÔNG TY [TÊN CÔNG TY]**
+*(Ví dụ: Quy trình Xử lý Đổi trả hàng và Hoàn tiền tại Sàn TMĐT XYZ)*
+
+---
+
+### CHƯƠNG 1: TỔNG QUAN (INTRODUCTION)
+
+*Mục đích: Giới thiệu "Sân khấu" nơi quy trình diễn ra.*
+
+1. **Giới thiệu doanh nghiệp (Giả định):**
+* Tên công ty, lĩnh vực hoạt động (VD: Sàn TMĐT mô hình C2C).
+* Cơ cấu tổ chức sơ bộ (Sơ đồ tổ chức - Org Chart): Chỉ ra các phòng ban liên quan đến quy trình (Kho, CSKH, Kế toán, Vận chuyển...).
+
+
+2. **Phạm vi quy trình (Process Scope):**
+* Điểm bắt đầu (Start Event): Khi khách bấm nút "Yêu cầu trả hàng".
+* Điểm kết thúc (End Event): Khi tiền về ví khách hoặc yêu cầu bị từ chối.
+
+
+3. **Lý do chọn đề tài:** Tại sao quy trình này quan trọng? (VD: Ảnh hưởng trực tiếp đến uy tín sàn và trải nghiệm khách hàng).
+
+### CHƯƠNG 2: MÔ HÌNH HÓA HIỆN TRẠNG (AS-IS PROCESS)
+
+*Mục đích: Vẽ lại cách làm việc "cũ", thường là thủ công hoặc bán tự động.*
+
+1. **Mô tả quy trình hiện tại (Narrative):**
+* Kể lại câu chuyện quy trình bằng lời văn. Dựa trên dữ liệu khảo sát (đóng vai/tham khảo tài liệu Seller Uni như đã bàn).
+* Ví dụ: "Hiện tại, nhân viên CSKH phải mở email kiểm tra ảnh bằng chứng thủ công, sau đó nhập liệu vào Excel..."
+
+
+2. **Sơ đồ BPMN hiện trạng (AS-IS Diagram):**
+* Vẽ sơ đồ quy trình chi tiết.
+* **Lưu ý:** Thể hiện rõ các điểm yếu (bàn giao qua lại nhiều, chờ đợi lâu, dùng giấy tờ/Excel rời rạc).
+
+
+3. **Ma trận trách nhiệm (RACI Matrix):**
+* Kẻ bảng liệt kê ai làm gì (Responsible), ai chịu trách nhiệm chính (Accountable), ai cần được tư vấn (Consulted), ai cần được thông báo (Informed).
+* *Phần này giúp nhóm 6 người có việc để làm chi tiết.*
+
+
+
+### CHƯƠNG 3: PHÂN TÍCH VÀ ĐÁNH GIÁ (ANALYSIS & DIAGNOSIS)
+
+*Mục đích: "Vạch lá tìm sâu" - Đây là chương quan trọng nhất để lấy điểm cao.*
+
+1. **Các chỉ số đo lường hiệu quả (KPIs):**
+* Thời gian chu kỳ (Cycle time): Mất bao lâu để xong 1 đơn?
+* Tỷ lệ lỗi (Error rate): Bao nhiêu % đơn bị xử lý sai?
+* Chi phí (Cost): Tốn bao nhiêu tiền nhân sự cho 1 đơn?
+
+
+2. **Xác định các vấn đề (Pain Points/Bottlenecks):**
+* **Nút thắt cổ chai:** Việc bị ùn ứ ở đâu? (VD: Tại bộ phận kiểm hàng do thiếu người).
+* **Sự lãng phí:** Bước nào thừa? (VD: Phải in phiếu ra giấy rồi lại nhập vào máy).
+* **Rủi ro:** Gian lận ở đâu?
+
+
+3. **Nguyên nhân gốc rễ (Root Cause Analysis):**
+* Sử dụng biểu đồ **Xương cá (Fishbone Diagram)** hoặc **5 Whys** để tìm nguyên nhân.
+* Ví dụ: Chậm trễ -> Do phần mềm cũ + Do quy trình duyệt qua 3 cấp không cần thiết.
+
+
+
+### CHƯƠNG 4: THIẾT KẾ QUY TRÌNH TƯƠNG LAI (TO-BE PROCESS)
+
+*Mục đích: Đưa ra giải pháp cải tiến.*
+
+1. **Các đề xuất cải tiến:**
+* **Tự động hóa (Automation):** Thay người bằng hệ thống (VD: Hệ thống tự động duyệt hoàn tiền cho các đơn dưới 50k).
+* **Loại bỏ (Elimination):** Bỏ bước phê duyệt trung gian.
+* **Song song hóa (Parallelism):** Thực hiện 2 bước cùng lúc thay vì chờ nhau.
+
+
+2. **Sơ đồ BPMN đề xuất (TO-BE Diagram):**
+* Vẽ lại quy trình mới.
+* Sử dụng các ký hiệu nâng cao (Service Task, Send/Receive Task) để thể hiện sự tự động hóa.
+
+
+3. **Mô tả chi tiết các bước thay đổi:**
+* Giải thích rõ tại sao bước này lại khác so với AS-IS.
+* Mô tả luồng dữ liệu (Data Flow) trong các bước quan trọng.
+
+
+### CHƯƠNG 5 - CÀI ĐẶT VÀ TRIỂN KHAI THỰC NGHIỆM
+
+**5.1. Kiến trúc giải pháp (Solution Architecture)**
+
+* **Orchestrator (Nhạc trưởng):** Camunda Run (hoặc Camunda Platform 7/8). Đóng vai trò điều phối luồng quy trình.
+* **Human Task (Tác vụ người dùng):** Sử dụng Camunda Tasklist để nhân viên vào duyệt/nhập liệu.
+* **Automated Task (Tác vụ tự động - RPA):** Robot (Bot) thực hiện các công việc lặp lại.
+* **Giao tiếp:** Thông qua REST API hoặc External Task Pattern.
+
+**5.2. Kịch bản Demo (Use Case Scenario)**
+
+* Chọn 1 luồng nhỏ nhưng quan trọng để demo.
+* *Ví dụ (Quy trình Trả hàng):* Khách yêu cầu trả hàng -> **Bot tự động vào web đơn vị vận chuyển tra cứu hành trình** -> Nếu đã giao thành công -> Chuyển nhân viên duyệt -> Nhân viên duyệt OK -> **Bot tự động cập nhật Google Sheet/Excel kế toán**.
+
+**5.3. Cài đặt trên Camunda Modeler**
+
+* Thiết kế lại BPMN trên Camunda Modeler (file `.bpmn`).
+* Cấu hình các thuộc tính kỹ thuật (Executable, Assignee, Topic Name).
+* Thiết kế Form nhập liệu (Camunda Forms) cho các bước của người dùng.
+
+**5.4. Xây dựng Robot RPA**
+
+* Giới thiệu công cụ: UiPath (kéo thả) hoặc Python Selenium (Code).
+* Mô tả logic của Bot: Mở trình duyệt -> Login -> Cào dữ liệu -> Trả kết quả về Camunda.
+
+**5.5. Kết quả chạy thử nghiệm (Demo Run)**
+
+* Quay video màn hình hoặc demo trực tiếp tại lớp.
+
+
+### CHƯƠNG 6: SO SÁNH VÀ KẾT LUẬN
+
+*Mục đích: Chứng minh giải pháp của nhóm có hiệu quả.*
+
+1. **So sánh AS-IS và TO-BE:**
+* Kẻ bảng so sánh: Số lượng bước (giảm bao nhiêu?), Thời gian ước tính (giảm bao nhiêu?), Số người tham gia.
+
+
+2. **Mô phỏng (Simulation - Nếu dùng Bizagi):**
+* Chạy mô phỏng để ra biểu đồ chứng minh thời gian chờ giảm xuống. (Nếu không chạy được phần mềm thì lập bảng tính Excel ước lượng).
+
+
+3. **Kết luận chung & Hướng phát triển.**
+
+---
+
+### IV. GỢI Ý: HƯỚNG DẪN KỸ THUẬT CHI TIẾT (HOW-TO)
+
+Để nhóm 6 người làm được phần này, bạn cần chia việc rạch ròi giữa đội **Business** (Vẽ) và **Tech** (Code/Cấu hình).
+
+#### Bước 1: Chuẩn hóa quy trình trên Camunda Modeler
+
+* Tải **Camunda Modeler** (Desktop app).
+* Vẽ quy trình TO-BE. Lưu ý quan trọng:
+* Với bước người làm (User Task): Cần gán `Assignee` (ví dụ: `demo`).
+* Với bước Bot làm (Service Task): Chọn `Implementation` là `External`, đặt `Topic` là tên nhiệm vụ (ví dụ: `check-shipping-status`).
+* Tích vào ô `Executable` ở cấp độ Process.
+
+
+
+#### Bước 2: Cài đặt Camunda Platform (Server)
+
+* Tải **Camunda Run** (bản nhẹ nhất, chỉ cần giải nén và chạy file `start.bat` hoặc `start.sh`).
+* Truy cập `localhost:8080` để vào Cockpit (Quản trị) và Tasklist (Cho người dùng làm việc).
+* Deploy file `.bpmn` từ Modeler vào Server này.
+
+#### Bước 3: Xây dựng RPA Bot (Kết nối Camunda)
+
+Đây là phần "ăn tiền". Bạn có 2 cách tùy vào năng lực nhóm:
+
+* **Cách 1: Dùng Python (Khuyên dùng cho dân IT/MIS)**
+* Dùng thư viện `camunda-external-task-client-python`.
+* Dùng thư viện `Selenium` để điều khiển trình duyệt (giả lập RPA).
+* *Cơ chế:* Code Python sẽ "lắng nghe" Camunda. Khi quy trình chạy đến bước `check-shipping-status`, Python sẽ tự bật trình duyệt lên, tra cứu, rồi gửi kết quả lại cho Camunda.
+
+
+* **Cách 2: Dùng UiPath (Khuyên dùng cho dân Kinh tế/Business)**
+* Dùng UiPath Studio (Community Edition).
+* Tải gói `Camunda.UiPath.Integration`.
+* Dùng Activity `Poll External Task` để nhận lệnh từ Camunda và thực hiện thao tác trên màn hình.
+
+
+
+#### Bước 4: Demo tích hợp (Kịch bản trình diễn)
+
+Khi báo cáo, hãy sắp xếp màn hình để Giảng viên thấy sự tương tác:
+
+1. **Màn hình 1 (Camunda Tasklist):** Sinh viên đóng vai khách hàng điền Form "Yêu cầu trả hàng". Bấm Submit.
+2. **Màn hình 2 (RPA Visual):** Ngay lập tức, một trình duyệt web (hoặc Excel) **tự động bật lên** (không ai chạm vào chuột). Nó tự điền mã đơn hàng, lấy trạng thái, rồi tự tắt. -> *Đây là lúc cả lớp sẽ "Wow".*
+3. **Màn hình 3 (Camunda Cockpit):** Quy trình tự động nhảy sang bước tiếp theo (Ví dụ: "Phê duyệt hoàn tiền") dựa trên kết quả Bot vừa lấy được.
+
+---
+
+### PHÂN CÔNG LẠI CÔNG VIỆC (QUAN TRỌNG)
+
+Với khối lượng việc mới này, cần điều chỉnh nhân sự nhóm 6 người:
+
+1. **Nhóm Business Analyst (2 người):**
+* Vẫn phụ trách khảo sát, vẽ AS-IS, viết báo cáo chương 1-3.
+* Viết kịch bản chi tiết cho Demo (Input là gì, Output mong muốn là gì).
+
+
+2. **Nhóm Camunda Engineer (2 người):**
+* Cài đặt Camunda Run.
+* Vẽ lại quy trình trên Camunda Modeler (cấu hình kỹ thuật).
+* Tạo các Form nhập liệu (HTML đơn giản hoặc Camunda Form JSON).
+
+
+3. **Nhóm RPA Developer (2 người):**
+* Code Python hoặc vẽ luồng UiPath.
+* Đảm bảo Bot chạy được trên máy demo mà không lỗi.
+* Kết nối Bot với Camunda (đảm bảo biến dữ liệu truyền đi truyền lại đúng).
+
+
+
+### Mẹo nhỏ khi Demo
+
+* **Đừng demo toàn bộ quy trình dài:** Chỉ demo một phân đoạn (Segment) có chứa đủ 3 yếu tố: *Người nhập -> Máy chạy -> Người duyệt*.
+* **Chuẩn bị video dự phòng:** Demo trực tiếp (Live Demo) rất dễ lỗi (hiệu ứng Demo). Hãy quay màn hình lại quá trình chạy thành công ở nhà để phòng hờ trường hợp máy treo tại lớp.
+* **Nhấn mạnh tính "Không chạm" (Touchless):** Khi Bot đang chạy, hãy giơ hai tay lên cao để giảng viên thấy là "Em không hề điều khiển chuột, Bot đang tự làm".
+
+---
+
+## V. GỢI Ý VỀ CÁCH KHẢO SÁT: Chiến lược khảo sát khi "Doanh nghiệp không cung cấp Data"
+Hiểu được khó khăn về dữ liệu là một điểm cộng lớn. Giảng viên thường đánh giá cao sinh viên biết cách "Reverse Engineering" (Kỹ thuật đảo ngược) quy trình từ các nguồn công khai hơn là việc các bạn có số liệu nội bộ (vì điều đó thường bất khả thi với sinh viên).
+
+Các bạn không cần lẻn vào kho Tiki hay Shopee để vẽ được quy trình. Hãy dùng các phương pháp sau để xây dựng dữ liệu **Giả định hợp lý (Logical Assumption)**:
+
+#### Cách 1: Khai thác "Học viện Người bán" (Seller University/Academy) - *Cách hiệu quả nhất*
+
+Các sàn TMĐT (Shopee, Lazada, TikTok, Amazon) đều có kho tài liệu khổng lồ dạy người bán cách vận hành. Đây chính là **quy trình chuẩn** được công khai.
+
+* **Hành động:** Vào *Shopee Uni* hoặc *Lazada University*. Tìm đọc các bài hướng dẫn như: "Quy trình xử lý đơn hàng chuẩn", "Quy trình tham gia Flash Sale", "Quy trình khiếu nại".
+* **Kết quả:** Bạn có sơ đồ luồng đi, thời gian quy định (SLA), và các bước bắt buộc mà không cần hỏi ai cả.
+
+#### Cách 2: Phương pháp "Mystery Shopping" (Khách hàng bí mật)
+
+Nhóm 6 người hãy tự đóng vai các mắt xích trong chuỗi.
+
+* **Hành động:**
+1. Cử 1 bạn mở một gian hàng ảo (bán đồ cũ, đồ handmade).
+2. Cử 1 bạn đóng vai khách đặt mua.
+3. Cử 1 bạn thử... yêu cầu trả hàng/hoàn tiền.
+4. Cử 1 bạn thử... chat chửi shop để xem quy trình báo cáo/chặn.
+
+
+* **Ghi chép:** Chụp màn hình từng thông báo (notification), email nhận được, thời gian chờ duyệt. Từ các giao diện (UI) này, các bạn suy ngược ra quy trình (Backend) phía sau.
+
+#### Cách 3: Phỏng vấn "Vi mô" (Micro-Interview)
+
+Đừng cố xin phỏng vấn Giám đốc Lazada. Hãy tìm những người dễ tiếp cận hơn:
+
+* **Shipper:** Hỏi anh shipper hay giao hàng cho bạn: *"Anh nhận đơn trên app thế nào? Nếu em không nghe máy thì anh phải bấm nút nào trên app? Quy trình trả về kho ra sao?"*
+* **Chủ shop online nhỏ:** Bạn bè, người quen bán hàng online. Hỏi họ cách họ in đơn, đóng gói và đối soát tiền với sàn.
+* **Nhân viên kho/CSKH:** Tìm trên LinkedIn hoặc các Group Facebook ("Hội tâm sự Shipper", "Cộng đồng Seller"), đăng bài khảo sát ẩn danh xin quy trình làm việc chung.
+
+#### Cách 4: Phân tích Dựa trên Giao diện (UI-based Process Mapping)
+
+Quy tắc vàng: **"Nếu trên App có nút bấm, thì phía sau phải có một Task xử lý".**
+
+* *Ví dụ:* Trên App có nút "Đã nhận được hàng".
+* *Suy ra BPMN:* Khi khách bấm nút này -> Hệ thống kích hoạt Task "Giải phóng tiền cho người bán" -> Gửi Message "Cập nhật ví tiền".
+
+---
+
+### Lời khuyên cho Đồ án
+
+Khi viết báo cáo, hãy thành thật về nguồn dữ liệu để tăng tính thuyết phục:
+
+> *"Do giới hạn về bảo mật thông tin doanh nghiệp, nhóm thực hiện xây dựng quy trình TO-BE dựa trên phương pháp **Black-box Testing** (Kiểm thử hộp đen) thông qua việc trải nghiệm thực tế dịch vụ, kết hợp tham khảo tài liệu hướng dẫn vận hành công khai của Shopee University dành cho đối tác bán hàng."*
+
+Câu này sẽ giúp các bạn tránh bị Giảng viên bắt bẻ là "số liệu bịa" và chứng minh được tư duy phân tích sắc bén của nhóm.
 
